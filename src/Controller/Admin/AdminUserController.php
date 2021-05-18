@@ -41,7 +41,7 @@ class AdminUserController extends AdminBaseController
         if(($form->isSubmitted()) && ($form->isValid())){
             $password=$passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
-            $user->setRoles('ROLE_ADMIN');
+            $user->setRoles(["ROLE_ADMIN"]);
             $em->persist($user);
             $em->flush();
 
