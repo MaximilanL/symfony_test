@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Comment
 {
+    private const PUBLISHED = 1;
+    private const DRAFT = 0;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -32,6 +35,11 @@ class Comment
      * @ORM\Column(type="datetime")
      */
     private $create_at;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_published;
 
     public function getId(): ?int
     {
@@ -67,10 +75,30 @@ class Comment
         return $this->create_at;
     }
 
+    public function setCreateAtValue()
+    {
+        $this->create_at = new \DateTime();
+    }
+
     public function setCreateAt(\DateTimeInterface $create_at): self
     {
         $this->create_at = $create_at;
 
         return $this;
+    }
+
+    public function getIsPublished(): ?bool
+    {
+        return $this->is_published;
+    }
+
+    public function setIsPublished()
+    {
+        $this->is_published = self::PUBLISHED;
+    }
+
+    public function setIsDraft()
+    {
+        $this->is_published = self::DRAFT;
     }
 }
