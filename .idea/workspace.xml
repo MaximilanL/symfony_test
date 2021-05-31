@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="17517cbf-0a85-4f72-8283-f1ddb1057898" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/CategoryType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CategoryType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/PostType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/PostType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Post.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,13 +142,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/admin/post" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\OS\OSPanel\domains\symfony_test\templates\admin\post" />
       <recent name="F:\OS\OSPanel\domains\symfony_test\templates\admin" />
       <recent name="F:\OS\OSPanel\domains\symfony_test\public\assets\admin\css" />
       <recent name="F:\OS\OSPanel\domains\symfony_test\public\assets\main" />
@@ -182,7 +182,8 @@
       <workItem from="1621970705117" duration="932000" />
       <workItem from="1622131667966" duration="1505000" />
       <workItem from="1622213972331" duration="1050000" />
-      <workItem from="1622313251535" duration="1238000" />
+      <workItem from="1622313251535" duration="1410000" />
+      <workItem from="1622469538604" duration="1615000" />
     </task>
     <servers />
   </component>
