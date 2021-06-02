@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="17517cbf-0a85-4f72-8283-f1ddb1057898" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/adminbase.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/adminbase.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/post/form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/post/form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/post/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/post/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,18 +145,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/admin/post" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\OS\OSPanel\domains\symfony_test\templates\admin\category" />
       <recent name="F:\OS\OSPanel\domains\symfony_test\templates\admin\post" />
       <recent name="F:\OS\OSPanel\domains\symfony_test\templates\admin" />
       <recent name="F:\OS\OSPanel\domains\symfony_test\public\assets\admin\css" />
       <recent name="F:\OS\OSPanel\domains\symfony_test\public\assets\main" />
-      <recent name="F:\OS\OSPanel\domains\symfony_test\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\OS\OSPanel\domains\symfony_test\src\Controller\Security" />
@@ -183,7 +186,9 @@
       <workItem from="1622131667966" duration="1505000" />
       <workItem from="1622213972331" duration="1050000" />
       <workItem from="1622313251535" duration="1410000" />
-      <workItem from="1622469538604" duration="1615000" />
+      <workItem from="1622469538604" duration="1785000" />
+      <workItem from="1622553138521" duration="1892000" />
+      <workItem from="1622640827689" duration="913000" />
     </task>
     <servers />
   </component>
