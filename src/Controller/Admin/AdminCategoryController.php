@@ -66,9 +66,17 @@ class AdminCategoryController extends AdminBaseController
         $form=$this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $category->setUpdateAtValue();
+            if($form->get('save')->isClicked()){
+                $category->setUpdateAtValue();
+                $this->addFlash('success', 'Категория обновлена');
+            }
+
+            if($form->get('delete')->isClicked()){
+                $em->remove($category);
+                $this->addFlash('success', 'Категория удалена');
+            }
+
             $em->flush();
-            $this->addFlash('success', 'Категория обновлена');
             return $this->redirectToRoute('admin_category');
         }
 

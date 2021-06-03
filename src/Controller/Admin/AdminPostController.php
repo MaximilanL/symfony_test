@@ -2,6 +2,7 @@
 
 
 namespace App\Controller\Admin;
+use App\Entity\Category;
 use App\Entity\Post;
 use App\Form\PostType;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,9 +19,12 @@ class AdminPostController extends AdminBaseController
         $post=$this->getDoctrine()->getRepository(Post::class)
             ->findAll();
 
+        $checkCategory=$this->getDoctrine()->getRepository(Category::class)
+            ->findAll();
         $forRender= parent::renderDefault();
         $forRender['title']="Посты";
         $forRender['post']=$post;
+        $forRender['check_category']=$checkCategory;
         return $this->render('admin/post/index.html.twig', $forRender);
     }
 
