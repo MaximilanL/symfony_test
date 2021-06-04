@@ -53,4 +53,40 @@ class AdminPostController extends AdminBaseController
         $forRender['form']=$form->createView();
         return $this->render('admin/post/form.html.twig', $forRender);
     }
+
+    /**
+     * @Route("/admin/post/update/{id}", name="admin_post_update")
+     * @param int $id
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
+    public function update(int $id, Request $request)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $post=$this->getDoctrine()->getRepository(Post::class)
+            ->find($id);
+
+        $form=$this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            if($form->get('save')->isClicked()){
+                $post->setUpdateAtValue();
+                $this->addFlash('success', 'Пост обновлён');
+            }
+
+            if($form->get('delete')->isClicked()){
+                $em->remove($post);
+                $this->addFlash('success', 'Пост удалён');
+            }
+
+            $em->flush();
+            return $this->redirectToRoute('admin_post');
+        }
+
+
+        $forRender= parent::renderDefault();
+        $forRender['title']="Редактирование поста";
+        $forRender['form']=$form->createView();
+        return $this->render('admin/post/form.html.twig', $forRender);
+    }
 }
