@@ -55,6 +55,7 @@
                     <ul>
                         {% for post_item in post %}
                             <li>
+                                <img src="{{ asset('uploads/post/') }}{{ post_item.image }}" width="200px" alt="">
                                 {{ post_item.title }}
                                 <a href="{{ path('admin_post_update', {'id': post_item.id}) }}"
                                    class="btn-link">

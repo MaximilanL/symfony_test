@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Category;
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Service\FileManagerServiceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,15 +32,21 @@ class AdminPostController extends AdminBaseController
     /**
      * @Route("/admin/post/create", name="admin_post_create")
      * @param Request $request
+     * @param FileManagerServiceInterface $fileManagerService
      * @return RedirectResponse|Response
      */
-    public function create(Request $request)
+    public function create(Request $request, FileManagerServiceInterface $fileManagerService)
     {
         $em=$this->getDoctrine()->getManager();
         $post=new Post();
         $form=$this->createForm(PostType::class, $post);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $image=$form->get('image')->getData();
+            if($image){
+                $filename=$fileManagerService->imagePostUpload($image);
+                $post->setImage($filename);
+            }
             $post->setCreateAtValue();
             $post->setUpdateAtValue();
             $post->setIsPublished();
