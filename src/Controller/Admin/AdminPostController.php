@@ -65,9 +65,10 @@ class AdminPostController extends AdminBaseController
      * @Route("/admin/post/update/{id}", name="admin_post_update")
      * @param int $id
      * @param Request $request
+     * @param FileManagerServiceInterface $fileManagerService
      * @return RedirectResponse|Response
      */
-    public function update(int $id, Request $request)
+    public function update(int $id, Request $request, FileManagerServiceInterface $fileManagerService)
     {
         $em=$this->getDoctrine()->getManager();
         $post=$this->getDoctrine()->getRepository(Post::class)
@@ -77,11 +78,25 @@ class AdminPostController extends AdminBaseController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             if($form->get('save')->isClicked()){
+                $image=$form->get('image')->getData();
+                $imageOld=$post->getImage();
+                if($image){
+                    if ($imageOld){
+                        $fileManagerService->removePostImage($imageOld);
+                    }
+                    $fileName=$fileManagerService->imagePostUpload($image);
+                    $post->setImage($fileName);
+                }
+
                 $post->setUpdateAtValue();
                 $this->addFlash('success', 'Пост обновлён');
             }
 
             if($form->get('delete')->isClicked()){
+                $image=$post->getImage();
+                if($image){
+                    $fileManagerService->removePostImage($image);
+                }
                 $em->remove($post);
                 $this->addFlash('success', 'Пост удалён');
             }
