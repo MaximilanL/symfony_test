@@ -46,11 +46,14 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
 
     public function setUpdateCategory(Category $category): object
     {
-        // TODO: Implement setUpdateCategory() method.
+        $category->setUpdateAtValue();
+        $this->manager->flush();
+        return $category;
     }
 
     public function setDeleteCategory(Category $category)
     {
-        // TODO: Implement setDeleteCategory() method.
+        $this->manager->remove($category);
+        $this->manager->flush();
     }
 }
