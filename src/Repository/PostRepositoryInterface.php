@@ -37,7 +37,6 @@ interface PostRepositoryInterface
 
     /**
      * @param Post $post
-     * @param string $fileName
      */
-    public function setDeletePost(Post $post, string $fileName);
+    public function setDeletePost(Post $post);
 }

@@ -56,11 +56,28 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
 
     public function setUpdatePost(Post $post, UploadedFile $file): object
     {
-        // TODO: Implement setUpdatePost() method.
+        $fileName=$post->getImage();
+        if($file){
+            if($fileName){
+                $this->fm->removePostImage($fileName);
+            }
+            $fileName=$this->fm->imagePostUpload($file);
+            $post->setImage($fileName);
+        }
+        $post->setUpdateAtValue();
+        $this->em->flush();
+
+        return $post;
     }
 
-    public function setDeletePost(Post $post, string $fileName)
+    public function setDeletePost(Post $post)
     {
-        // TODO: Implement setDeletePost() method.
+        $fileName=$post->getImage();
+        if($fileName){
+            $this->fm->removePostImage($fileName);
+        }
+
+        $this->em->remove($post);
+        $this->em->flush();
     }
 }
