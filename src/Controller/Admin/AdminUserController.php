@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\UserRepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,16 +14,24 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AdminUserController extends AdminBaseController
 {
     /**
+     * @var UserRepositoryInterface
+     */
+    private $userRepository;
+
+    public function __construct(UserRepositoryInterface $userRepository){
+        $this->userRepository=$userRepository;
+    }
+    
+
+    /**
      * @Route("/admin/user", name="admin_user")
      * @return Response
      */
-    public function index()
+    public function indexAction()
     {
-        $users=$this->getDoctrine()->getRepository(User::class)->findAll();
-
         $forRender=parent::renderDefault();
         $forRender['title']="Пользователи";
-        $forRender['users']=$users;
+        $forRender['users']=$this->userRepository->getAll();
         return $this->render('admin/user/index.html.twig', $forRender);
     }
 
@@ -32,7 +41,7 @@ class AdminUserController extends AdminBaseController
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @return RedirectResponse|Response
      */
-    public function create(Request $request, UserPasswordEncoderInterface $passwordEncoder){
+    public function createAction(Request $request, UserPasswordEncoderInterface $passwordEncoder){
         $user= new User();
         $form=$this->createForm(UserType::class, $user);
         $em=$this->getDoctrine()->getManager();
