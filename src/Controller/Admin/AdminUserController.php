@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepositoryInterface;
+use App\Service\User\UserService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,8 +19,14 @@ class AdminUserController extends AdminBaseController
      */
     private $userRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository){
+    /**
+     * @var UserService $userService
+     */
+    private $userService;
+
+    public function __construct(UserRepositoryInterface $userRepository, UserService $userService){
         $this->userRepository=$userRepository;
+        $this->userService=$userService;
     }
     
 
@@ -38,25 +45,18 @@ class AdminUserController extends AdminBaseController
     /**
      * @Route("/admin/user/create", name="admin_user_create")
      * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return RedirectResponse|Response
      */
-    public function createAction(Request $request, UserPasswordEncoderInterface $passwordEncoder){
+    public function createAction(Request $request){
         $user= new User();
         $form=$this->createForm(UserType::class, $user);
-        $em=$this->getDoctrine()->getManager();
         $form->handleRequest($request);
 
         if(($form->isSubmitted()) && ($form->isValid())){
-            $password=$passwordEncoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
-            $user->setRoles(["ROLE_ADMIN"]);
-            $em->persist($user);
-            $em->flush();
-
+            $this->userService->handleCreate($user);
+            $this->addFlash('success', 'Пользователь создан!');
             return $this->redirectToRoute('admin_user');
         }
-
         $forRender=parent::renderDefault();
         $forRender['title']="Форма создания пользователя";
         $forRender['form']=$form->createView();
